@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './components/App';
 
 import store from './store/index';
-import { addRecipe } from './actions';
 
-window.store = store;
-window.addRecipe = addRecipe;
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+  document.querySelector('#root')
+);

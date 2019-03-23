@@ -1,5 +1,10 @@
 import React from 'react';
+import List from './List';
 
-const App = () => <div>Boiler Plate</div>;
+const App = () => (
+  <div>
+    <List />
+  </div>
+);
 
 export default App;
