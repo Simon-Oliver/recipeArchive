@@ -1,12 +1,16 @@
-import { ADD_RECIPE } from '../constants/action-types';
+import { ADD_RECIPE, FOUND_BAD_WORD } from '../constants/action-types';
 
 const initialState = {
-  recipes: []
+  recipes: [],
+  error: ''
 };
 
 const rootReducer = (state = initialState, action) => {
   if (action.type === ADD_RECIPE) {
-    return { ...state, recipes: [...state.recipes, action.payload] };
+    return { ...state, recipes: [...state.recipes, action.payload], error: '' };
+  }
+  if (action.type === FOUND_BAD_WORD) {
+    return { ...state, error: action.payload };
   }
 
   return state;
