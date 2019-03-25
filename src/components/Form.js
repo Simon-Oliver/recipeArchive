@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uniqid from 'uniqid';
-import { addRecipe } from '../actions';
+import { addRecipe, getData } from '../actions';
 
 class Form extends Component {
   state = { title: '' };
@@ -32,5 +32,5 @@ class Form extends Component {
 
 export default connect(
   null,
-  { addRecipe }
+  { addRecipe, getData }
 )(Form);
