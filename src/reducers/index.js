@@ -34,6 +34,10 @@ const rootReducer = (state = initialState, action) => {
     return { ...state, filter: { ...state.filter, sort: action.payload } };
   }
 
+  if (action.type === 'DELETE_RECIPE') {
+    return { ...state, recipes: state.recipes.filter(e => e.id !== action.payload) };
+  }
+
   return state;
 };
 

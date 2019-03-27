@@ -10,3 +10,4 @@ export const getData = () => dispatch => {
 
 export const searchRecipe = search => ({ type: 'TEXT_FITLER', payload: search });
 export const sortRecipe = sort => ({ type: 'SORT_RECIPE', payload: sort });
+export const deleteRecipe = id => ({ type: 'DELETE_RECIPE', payload: id });
