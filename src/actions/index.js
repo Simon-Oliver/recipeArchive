@@ -7,3 +7,5 @@ export const getData = () => dispatch => {
     .then(response => response.json())
     .then(json => dispatch({ type: 'DATA_LOADED', payload: json }));
 };
+
+export const searchRecipe = search => ({ type: 'TEXT_FITLER', payload: search });
