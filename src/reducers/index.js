@@ -11,7 +11,7 @@ const initialState = {
   data: {},
   isFetching: false,
   isError: false,
-  filter: { search: '' }
+  filter: { search: '', sort: false }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -27,7 +27,11 @@ const rootReducer = (state = initialState, action) => {
   }
 
   if (action.type === 'TEXT_FITLER') {
-    return { ...state, filter: { search: action.payload } };
+    return { ...state, filter: { ...state.filter, search: action.payload } };
+  }
+
+  if (action.type === 'SORT_RECIPE') {
+    return { ...state, filter: { ...state.filter, sort: action.payload } };
   }
 
   return state;

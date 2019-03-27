@@ -9,3 +9,4 @@ export const getData = () => dispatch => {
 };
 
 export const searchRecipe = search => ({ type: 'TEXT_FITLER', payload: search });
+export const sortRecipe = sort => ({ type: 'SORT_RECIPE', payload: sort });
