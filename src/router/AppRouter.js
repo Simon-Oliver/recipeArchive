@@ -8,8 +8,8 @@ const AppRouter = () => (
   <div>
     <BrowserRouter>
       <Route path="/" exact component={Home} />
-      <Route path="/recipe/new" component={AddRecipe} />
       <Route path="/recipes" component={RecipeList} />
+      <Route path="/recipes/new" component={AddRecipe} />
     </BrowserRouter>
   </div>
 );
