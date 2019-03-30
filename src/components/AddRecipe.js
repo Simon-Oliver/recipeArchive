@@ -5,8 +5,7 @@ class AddRecipe extends React.Component {
     recipeIngredient: ['almonds', 'flour'],
     name: '',
     recipeInstructions: '',
-    recipeYield: '',
-    currentIngredient: ''
+    recipeYield: ''
   };
 
   addIngredientField(e) {
@@ -34,14 +33,46 @@ class AddRecipe extends React.Component {
     }
   }
 
+  handelOnSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
+  }
+
   handleOnInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  renderForm() {
+  renderIngredients() {
     return (
-      <div>
-        <div>
+      <div className="field">
+        <div className="ui segment">
+          <label htmlFor="recipeIngredient">Ingredients:</label>
+          {this.state.recipeIngredient.map((e, i) => (
+            <div className="ui vertical segment" key={`recipeIngredient${i}`}>
+              <div className="ui right icon input">
+                <input
+                  type="text"
+                  id={`recipeIngredient${i}`}
+                  name={`recipeIngredient${i}`}
+                  value={e}
+                  onChange={f => this.handleOnRecipeInputChange(f, i)}
+                />
+                <i className="close link icon" onClick={() => this.handelDeletedIngredient(e)} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <button className="ui primary button" onClick={e => this.addIngredientField(e)}>
+          Add ingredient
+        </button>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <form className="ui form segment" onSubmit={e => this.handelOnSubmit(e)}>
+        <div className="field">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -51,28 +82,22 @@ class AddRecipe extends React.Component {
             onChange={e => this.handleOnInputChange(e)}
           />
         </div>
-        <div>
-          {this.state.recipeIngredient.map((e, i) => (
-            <div key={`recipeIngredient${i}`}>
-              <label htmlFor={`recipeIngredient${i}`}>{`Ingredient ${i + 1}`}</label>
-              <input
-                type="text"
-                id={`recipeIngredient${i}`}
-                name={`recipeIngredient${i}`}
-                value={e}
-                onChange={f => this.handleOnRecipeInputChange(f, i)}
-              />
-              <button onClick={() => this.handelDeletedIngredient(e)}>X</button>
-            </div>
-          ))}
+        {this.renderIngredients()}
+        <div className="field">
+          <label htmlFor="recipeInstructions">Methode:</label>
+          <textarea
+            type="textbox"
+            id="recipeInstructions"
+            name="recipeInstructions"
+            value={this.state.recipeInstructions}
+            onChange={e => this.handleOnInputChange(e)}
+          />
         </div>
-        <button onClick={e => this.addIngredientField(e)}>Add ingredient</button>
-      </div>
+        <button className="ui positive button" type="submit">
+          Add Recipe
+        </button>
+      </form>
     );
-  }
-
-  render() {
-    return <div>{this.renderForm()}</div>;
   }
 }
 

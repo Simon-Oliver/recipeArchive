@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddRecipe from '../components/AddRecipe';
 import Home from '../components/Home';
 import RecipeList from '../components/RecipeList';
 
 const AppRouter = () => (
-  <div>
+  <div className="ui container">
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/recipes" component={RecipeList} />
-      <Route path="/recipes/new" component={AddRecipe} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/recipes/new" component={AddRecipe} />
+        <Route path="/recipes" component={RecipeList} />
+      </Switch>
     </BrowserRouter>
   </div>
 );
