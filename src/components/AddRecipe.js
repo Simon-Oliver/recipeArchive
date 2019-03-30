@@ -15,12 +15,23 @@ class AddRecipe extends React.Component {
   }
 
   handleOnRecipeInputChange(e, i) {
-    console.log(e.target);
-    // this.setState(prevState => {
-    //   const newIngredients = [...prevState.recipeIngredient];
-    //   newIngredients[i] = e.target.value;
-    //   return { recipeIngredient: newIngredients };
-    // });
+    const val = e.target.value;
+    this.setState(prevState => {
+      const newIngredients = [...prevState.recipeIngredient];
+      newIngredients[i] = val;
+      return { recipeIngredient: newIngredients };
+    });
+  }
+
+  handelDeletedIngredient(e) {
+    const { recipeIngredient } = this.state;
+    const val = e;
+    const array = [...recipeIngredient]; // make a separate copy of the array
+    const index = array.indexOf(val);
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({ recipeIngredient: array });
+    }
   }
 
   handleOnInputChange(e) {
@@ -51,6 +62,7 @@ class AddRecipe extends React.Component {
                 value={e}
                 onChange={f => this.handleOnRecipeInputChange(f, i)}
               />
+              <button onClick={() => this.handelDeletedIngredient(e)}>X</button>
             </div>
           ))}
         </div>
