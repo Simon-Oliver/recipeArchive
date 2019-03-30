@@ -1,1 +1,1 @@
-export const addSomething = something => ({ type: 'ADD_SOMETHING', payload: something });
+export const addRecipe = recipe => ({ type: 'ADD_RECIPE', payload: recipe });

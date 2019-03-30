@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addRecipe } from '../actions';
 
 class AddRecipe extends React.Component {
   state = {
-    recipeIngredient: ['almonds', 'flour'],
+    recipeIngredient: [],
     name: '',
     recipeInstructions: '',
     recipeYield: ''
@@ -35,6 +37,13 @@ class AddRecipe extends React.Component {
 
   handelOnSubmit(e) {
     e.preventDefault();
+    this.props.addRecipe(this.state);
+    this.setState({
+      recipeIngredient: [],
+      name: '',
+      recipeInstructions: '',
+      recipeYield: ''
+    });
     console.log(this.state);
   }
 
@@ -45,23 +54,23 @@ class AddRecipe extends React.Component {
   renderIngredients() {
     return (
       <div className="field">
-        <div className="ui segment">
-          <label htmlFor="recipeIngredient">Ingredients:</label>
-          {this.state.recipeIngredient.map((e, i) => (
-            <div className="ui vertical segment" key={`recipeIngredient${i}`}>
-              <div className="ui right icon input">
-                <input
-                  type="text"
-                  id={`recipeIngredient${i}`}
-                  name={`recipeIngredient${i}`}
-                  value={e}
-                  onChange={f => this.handleOnRecipeInputChange(f, i)}
-                />
-                <i className="close link icon" onClick={() => this.handelDeletedIngredient(e)} />
-              </div>
+        <label htmlFor="recipeIngredient">Ingredients:</label>
+
+        {this.state.recipeIngredient.map((e, i) => (
+          <div className="ui basic segment" key={`recipeIngredient${i}`}>
+            <div className="ui right icon input">
+              <input
+                type="text"
+                id={`recipeIngredient${i}`}
+                name={`recipeIngredient${i}`}
+                value={e}
+                onChange={f => this.handleOnRecipeInputChange(f, i)}
+              />
+              <i className="close link icon" onClick={() => this.handelDeletedIngredient(e)} />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+
         <button className="ui primary button" onClick={e => this.addIngredientField(e)}>
           Add ingredient
         </button>
@@ -72,15 +81,27 @@ class AddRecipe extends React.Component {
   render() {
     return (
       <form className="ui form segment" onSubmit={e => this.handelOnSubmit(e)}>
-        <div className="field">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={this.state.name}
-            onChange={e => this.handleOnInputChange(e)}
-          />
+        <div className="fields">
+          <div className="twelve wide field">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={this.state.name}
+              onChange={e => this.handleOnInputChange(e)}
+            />
+          </div>
+          <div className="four wide field">
+            <label htmlFor="name">Yield:</label>
+            <input
+              type="text"
+              id="recipeYield"
+              name="recipeYield"
+              value={this.state.recpeYield}
+              onChange={e => this.handleOnInputChange(e)}
+            />
+          </div>
         </div>
         {this.renderIngredients()}
         <div className="field">
@@ -101,4 +122,7 @@ class AddRecipe extends React.Component {
   }
 }
 
-export default AddRecipe;
+export default connect(
+  null,
+  { addRecipe }
+)(AddRecipe);
