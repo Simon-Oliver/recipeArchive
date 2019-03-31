@@ -5,7 +5,8 @@ const initialState = {
       name: "Mom's World Famous Banana Bread",
       recipeInstructions:
         'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
-      recipeYield: '1 loaf'
+      recipeYield: '1 loaf',
+      id: '1234'
     }
   ]
 };

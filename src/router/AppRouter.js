@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddRecipe from '../components/AddRecipe';
 import Home from '../components/Home';
 import RecipeList from '../components/RecipeList';
+import Recipe from '../components/Recipe';
 
 const AppRouter = () => (
   <div className="ui container">
@@ -10,6 +11,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/recipes/new" component={AddRecipe} />
+        <Route path="/recipes/:id" component={Recipe} />
         <Route path="/recipes" component={RecipeList} />
       </Switch>
     </BrowserRouter>

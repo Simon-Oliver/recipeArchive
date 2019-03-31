@@ -1,5 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const RecipeList = () => <div>Recipe List</div>;
+const RecipeList = props => {
+  const { recipes } = props;
+  const recipeList = recipes.map(recipe => (
+    <div className="ui segment">
+      <a href={`/recipes/${recipe.id}`}>
+        <h4 className="ui header">{recipe.name}</h4>
+      </a>
+    </div>
+  ));
 
-export default RecipeList;
+  return (
+    <div className="ui segment">
+      <h3 className="ui dividing header">Recipes</h3>
+      {recipeList}
+    </div>
+  );
+};
+
+const mapStateToProps = state => ({ recipes: state.recipes });
+
+export default connect(mapStateToProps)(RecipeList);

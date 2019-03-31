@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import uniqId from 'uniqid';
 import { addRecipe } from '../actions';
 
 class AddRecipe extends React.Component {
@@ -7,7 +8,8 @@ class AddRecipe extends React.Component {
     recipeIngredient: [],
     name: '',
     recipeInstructions: '',
-    recipeYield: ''
+    recipeYield: '',
+    id: uniqId()
   };
 
   addIngredientField(e) {
@@ -42,9 +44,9 @@ class AddRecipe extends React.Component {
       recipeIngredient: [],
       name: '',
       recipeInstructions: '',
-      recipeYield: ''
+      recipeYield: '',
+      id: uniqId()
     });
-    console.log(this.state);
   }
 
   handleOnInputChange(e) {
@@ -81,6 +83,7 @@ class AddRecipe extends React.Component {
   render() {
     return (
       <form className="ui form segment" onSubmit={e => this.handelOnSubmit(e)}>
+        <h3 className="ui dividing header">New Recipe:</h3>
         <div className="fields">
           <div className="twelve wide field">
             <label htmlFor="name">Name:</label>
