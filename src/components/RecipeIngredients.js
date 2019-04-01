@@ -2,13 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { editRecipe } from '../actions';
 
-class EditRecipe extends React.Component {
+class RecipeIngredients extends React.Component {
   state = {
-    recipeIngredient: [...this.props.recipe[0].recipeIngredient],
-    name: this.props.recipe[0].name,
-    recipeInstructions: this.props.recipe[0].recipeInstructions,
-    recipeYield: this.props.recipe[0].recipeYield,
-    id: this.props.recipe[0].id
+    recipeIngredient: [...this.props.recipe]
   };
 
   componentDidMount() {
@@ -70,7 +66,6 @@ class EditRecipe extends React.Component {
             </div>
           </div>
         ))}
-
         <button className="ui primary button" onClick={e => this.addIngredientField(e)}>
           Add ingredient
         </button>
@@ -79,47 +74,7 @@ class EditRecipe extends React.Component {
   }
 
   render() {
-    return (
-      <form className="ui form segment" onSubmit={e => this.handelOnSubmit(e)}>
-        <h3 className="ui dividing header">New Recipe:</h3>
-        <div className="fields">
-          <div className="twelve wide field">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={this.state.name}
-              onChange={e => this.handleOnInputChange(e)}
-            />
-          </div>
-          <div className="four wide field">
-            <label htmlFor="name">Yield:</label>
-            <input
-              type="text"
-              id="recipeYield"
-              name="recipeYield"
-              value={this.state.recpeYield}
-              onChange={e => this.handleOnInputChange(e)}
-            />
-          </div>
-        </div>
-        {this.renderIngredients()}
-        <div className="field">
-          <label htmlFor="recipeInstructions">Methode:</label>
-          <textarea
-            type="textbox"
-            id="recipeInstructions"
-            name="recipeInstructions"
-            value={this.state.recipeInstructions}
-            onChange={e => this.handleOnInputChange(e)}
-          />
-        </div>
-        <button className="ui positive button" type="submit">
-          Update Recipe
-        </button>
-      </form>
-    );
+    return <div>{this.renderIngredients()}</div>;
   }
 }
 
@@ -130,4 +85,4 @@ const mapStateToProps = (state, ownProps) => ({
 export default connect(
   mapStateToProps,
   { editRecipe }
-)(EditRecipe);
+)(RecipeIngredients);
