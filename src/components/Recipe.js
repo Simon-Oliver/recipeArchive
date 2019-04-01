@@ -6,6 +6,10 @@ const Recipe = props => {
   const regex = /\n+/gm;
   const formatedString = recipeInstructions.replace(regex, '<br>');
 
+  const onButtonClick = id => {
+    props.history.push(`/recipes/edit/${props.match.params.id}`);
+  };
+
   return (
     <div className="ui segment">
       <h2 className="ui dividing header ">{name}</h2>
@@ -21,7 +25,9 @@ const Recipe = props => {
         <h4 className="ui header">Method:</h4>
         <p dangerouslySetInnerHTML={{ __html: formatedString }} />
       </div>
-      <button className="ui positive button">Edit</button>
+      <button onClick={onButtonClick} className="ui positive button">
+        Edit
+      </button>
     </div>
   );
 };

@@ -15,6 +15,21 @@ const rootReducers = (state = initialState, action) => {
   if (action.type === 'ADD_RECIPE') {
     return { ...state, recipes: [...state.recipes, action.payload] };
   }
+
+  if (action.type === 'EDIT_RECIPE') {
+    return {
+      ...state,
+      recipes: state.recipes.map(e => {
+        if (e.id === action.id) {
+          return {
+            ...e,
+            ...action.update
+          };
+        }
+        return e;
+      })
+    };
+  }
   return state;
 };
 
