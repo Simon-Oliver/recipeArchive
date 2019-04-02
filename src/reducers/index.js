@@ -8,7 +8,8 @@ const initialState = {
       recipeYield: '1 loaf',
       id: '1234'
     }
-  ]
+  ],
+  currentRecipe: {}
 };
 
 const rootReducers = (state = initialState, action) => {
@@ -30,6 +31,7 @@ const rootReducers = (state = initialState, action) => {
       })
     };
   }
+
   return state;
 };
 

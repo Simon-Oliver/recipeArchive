@@ -1,14 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { editRecipe } from '../actions';
 
 class RecipeIngredients extends React.Component {
   state = {
-    recipeIngredient: [...this.props.recipe]
+    recipeIngredient: []
   };
 
   componentDidMount() {
-    console.log(this.props);
+    if (this.props.recipeIngredient) {
+      this.setState(() => ({ recipeIngredient: [...this.props.recipeIngredient] }));
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state !== prevState) {
+      this.props.onRecipeIngredientChange(this.state.recipeIngredient);
+    }
   }
 
   addIngredientField(e) {
@@ -34,13 +40,6 @@ class RecipeIngredients extends React.Component {
       array.splice(index, 1);
       this.setState({ recipeIngredient: array });
     }
-  }
-
-  handelOnSubmit(e) {
-    e.preventDefault();
-
-    this.props.editRecipe(this.state.id, this.state);
-    this.props.history.push('/recipes');
   }
 
   handleOnInputChange(e) {
@@ -74,15 +73,8 @@ class RecipeIngredients extends React.Component {
   }
 
   render() {
-    return <div>{this.renderIngredients()}</div>;
+    return <div className="field">{this.renderIngredients()}</div>;
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  recipe: state.recipes.filter(e => e.id === ownProps.match.params.id)
-});
-
-export default connect(
-  mapStateToProps,
-  { editRecipe }
-)(RecipeIngredients);
+export default RecipeIngredients;
