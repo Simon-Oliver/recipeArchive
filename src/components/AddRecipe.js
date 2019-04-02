@@ -10,7 +10,8 @@ class AddRecipe extends React.Component {
     name: '',
     recipeInstructions: '',
     recipeYield: '',
-    id: uniqId()
+    id: uniqId(),
+    key: 1
   };
 
   onRecipeIngredientChange = ingredients => {
@@ -45,12 +46,14 @@ class AddRecipe extends React.Component {
   handelOnSubmit(e) {
     e.preventDefault();
     this.props.addRecipe(this.state);
+    const key = this.state.key + 1;
     this.setState({
       recipeIngredient: [],
       name: '',
       recipeInstructions: '',
       recipeYield: '',
-      id: uniqId()
+      id: uniqId(),
+      key
     });
   }
 
@@ -112,6 +115,7 @@ class AddRecipe extends React.Component {
           </div>
         </div>
         <RecipeIngredients
+          key={this.state.key}
           ingredients={this.state.recipeIngredient}
           onRecipeIngredientChange={this.onRecipeIngredientChange}
         />
