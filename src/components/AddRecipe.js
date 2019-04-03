@@ -46,7 +46,7 @@ class AddRecipe extends React.Component {
   handelOnSubmit(e) {
     e.preventDefault();
     this.props.addRecipe(this.state);
-    const key = this.state.key + 1;
+    const key = this.state.key + 1; // change of key triggeres rerender and clears component
     this.setState({
       recipeIngredient: [],
       name: '',
@@ -96,6 +96,7 @@ class AddRecipe extends React.Component {
           <div className="twelve wide field">
             <label htmlFor="name">Name:</label>
             <input
+              required
               type="text"
               id="name"
               name="name"
@@ -104,12 +105,12 @@ class AddRecipe extends React.Component {
             />
           </div>
           <div className="four wide field">
-            <label htmlFor="name">Yield:</label>
+            <label htmlFor="recipeYield">Yield:</label>
             <input
               type="text"
               id="recipeYield"
               name="recipeYield"
-              value={this.state.recpeYield}
+              value={this.state.recipeYield}
               onChange={e => this.handleOnInputChange(e)}
             />
           </div>
