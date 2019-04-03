@@ -4,3 +4,5 @@ export const editRecipe = (id, update) => ({
   id,
   update
 });
+
+export const setTextFilter = text => ({ type: 'SET_TEXT_FILTER', text });

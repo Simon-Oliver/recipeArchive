@@ -6,18 +6,22 @@ import RecipeList from '../components/RecipeList';
 import Recipe from '../components/Recipe';
 import EditRecipe from '../components/EditRecipe';
 import RecipeIngredients from '../components/RecipeIngredients';
+import Header from '../components/Header';
 
 const AppRouter = () => (
   <div className="ui container">
     <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/recipes/new" component={AddRecipe} />
-        <Route path="/recipes/edit/:id" component={EditRecipe} />
-        <Route path="/recipes/:id" component={Recipe} />
-        <Route path="/recipes" component={RecipeList} />
-        <Route path="/test" component={RecipeIngredients} />
-      </Switch>
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/recipes/new" component={AddRecipe} />
+          <Route path="/recipes/edit/:id" component={EditRecipe} />
+          <Route path="/recipes/:id" component={Recipe} />
+          <Route path="/recipes" component={RecipeList} />
+          <Route path="/test" component={RecipeIngredients} />
+        </Switch>
+      </div>
     </BrowserRouter>
   </div>
 );

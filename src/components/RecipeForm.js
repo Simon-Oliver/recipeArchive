@@ -44,7 +44,7 @@ class EditRecipe extends React.Component {
     e.preventDefault();
 
     this.props.editRecipe(this.state.id, this.state);
-    this.props.history.push(`/recipes/${this.state.id}`);
+    this.props.history.push('/recipes');
   }
 
   handleOnInputChange(e) {

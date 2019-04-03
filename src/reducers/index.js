@@ -9,7 +9,7 @@ const initialState = {
       id: '1234'
     }
   ],
-  currentRecipe: {}
+  textFilter: null
 };
 
 const rootReducers = (state = initialState, action) => {
@@ -30,6 +30,10 @@ const rootReducers = (state = initialState, action) => {
         return e;
       })
     };
+  }
+
+  if (action.type === 'SET_TEXT_FILTER') {
+    return { ...state, textFilter: action.text };
   }
 
   return state;
