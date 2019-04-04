@@ -36,6 +36,10 @@ const rootReducers = (state = initialState, action) => {
     return { ...state, textFilter: action.text };
   }
 
+  if (action.type === 'DELETE_RECIPE') {
+    return { ...state, recipes: [...state.recipes.filter(e => e.id !== action.id)] };
+  }
+
   return state;
 };
 

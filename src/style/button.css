@@ -1,0 +1,9 @@
+.deleteRecipe:hover {
+    color: red;
+}
+
+.btnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}

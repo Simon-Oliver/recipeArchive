@@ -5,4 +5,6 @@ export const editRecipe = (id, update) => ({
   update
 });
 
+export const deleteRecipe = id => ({ type: 'DELETE_RECIPE', id });
+
 export const setTextFilter = text => ({ type: 'SET_TEXT_FILTER', text });
