@@ -9,7 +9,7 @@ const initialState = {
       id: '1234'
     }
   ],
-  textFilter: null
+  textFilter: ''
 };
 
 const rootReducers = (state = initialState, action) => {
