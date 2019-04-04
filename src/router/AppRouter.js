@@ -5,7 +5,6 @@ import Home from '../components/Home';
 import RecipeList from '../components/RecipeList';
 import Recipe from '../components/Recipe';
 import EditRecipe from '../components/EditRecipe';
-import RecipeIngredients from '../components/RecipeIngredients';
 import Header from '../components/Header';
 
 const AppRouter = () => (
@@ -19,7 +18,6 @@ const AppRouter = () => (
           <Route path="/recipes/edit/:id" component={EditRecipe} />
           <Route path="/recipes/:id" component={Recipe} />
           <Route path="/recipes" component={RecipeList} />
-          <Route path="/test" component={RecipeIngredients} />
         </Switch>
       </div>
     </BrowserRouter>

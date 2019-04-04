@@ -1,18 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editRecipe } from '../actions';
+import uniqId from 'uniqid';
+import { editRecipe, addRecipe } from '../actions';
 
-class EditRecipe extends React.Component {
+class RecipeForm extends React.Component {
   state = {
-    recipeIngredient: [...this.props.recipe[0].recipeIngredient],
-    name: this.props.recipe[0].name,
-    recipeInstructions: this.props.recipe[0].recipeInstructions,
-    recipeYield: this.props.recipe[0].recipeYield,
-    id: this.props.recipe[0].id
+    recipeIngredient: [],
+    name: '',
+    recipeInstructions: '',
+    recipeYield: '',
+    id: uniqId(),
+    key: 1,
+    newRecipe: true
   };
 
+  getDefaultProps() {
+    return { recipe: [{}] };
+  }
+
   componentDidMount() {
-    console.log(this.props);
+    if (this.props.recipe) {
+      this.setState({
+        ...this.state,
+        recipeIngredient: [...this.props.recipe[0].recipeIngredient],
+        name: this.props.recipe[0].name,
+        recipeInstructions: this.props.recipe[0].recipeInstructions,
+        recipeYield: this.props.recipe[0].recipeYield,
+        id: this.props.recipe[0].id,
+        newRecipe: false
+      });
+    }
   }
 
   addIngredientField(e) {
@@ -43,8 +60,21 @@ class EditRecipe extends React.Component {
   handelOnSubmit(e) {
     e.preventDefault();
 
-    this.props.editRecipe(this.state.id, this.state);
-    this.props.history.push('/recipes');
+    if (this.state.newRecipe) {
+      this.props.addRecipe(this.state);
+      const key = this.state.key + 1; // change of key triggeres rerender and clears component
+      this.setState({
+        recipeIngredient: [],
+        name: '',
+        recipeInstructions: '',
+        recipeYield: '',
+        id: uniqId(),
+        key
+      });
+    } else {
+      this.props.editRecipe(this.state.id, this.state);
+      this.props.history.push('/recipes');
+    }
   }
 
   handleOnInputChange(e) {
@@ -81,7 +111,9 @@ class EditRecipe extends React.Component {
   render() {
     return (
       <form className="ui form segment" onSubmit={e => this.handelOnSubmit(e)}>
-        <h3 className="ui dividing header">New Recipe:</h3>
+        <h3 className="ui dividing header">
+          {this.state.newRecipe ? 'New Recipe' : 'Update Recipe'}
+        </h3>
         <div className="fields">
           <div className="twelve wide field">
             <label htmlFor="name">Name:</label>
@@ -94,19 +126,19 @@ class EditRecipe extends React.Component {
             />
           </div>
           <div className="four wide field">
-            <label htmlFor="name">Yield:</label>
+            <label htmlFor="recipeYield">Yield:</label>
             <input
               type="text"
               id="recipeYield"
               name="recipeYield"
-              value={this.state.recpeYield}
+              value={this.state.recipeYield}
               onChange={e => this.handleOnInputChange(e)}
             />
           </div>
         </div>
         {this.renderIngredients()}
         <div className="field">
-          <label htmlFor="recipeInstructions">Methode:</label>
+          <label htmlFor="recipeInstructions">Method:</label>
           <textarea
             type="textbox"
             id="recipeInstructions"
@@ -116,18 +148,21 @@ class EditRecipe extends React.Component {
           />
         </div>
         <button className="ui positive button" type="submit">
-          Update Recipe
+          {this.state.newRecipe ? 'New Recipe' : 'Update Recipe'}
         </button>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  recipe: state.recipes.filter(e => e.id === ownProps.match.params.id)
-});
+const mapStateToProps = (state, ownProps) => {
+  if (!ownProps) {
+    return { recipe: state.recipes.filter(e => e.id === ownProps.match.params.id) };
+  }
+  return null;
+};
 
 export default connect(
   mapStateToProps,
-  { editRecipe }
-)(EditRecipe);
+  { editRecipe, addRecipe }
+)(RecipeForm);
