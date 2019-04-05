@@ -95,6 +95,7 @@ class RecipeForm extends React.Component {
                 name={`recipeIngredient${i}`}
                 value={e}
                 onChange={f => this.handleOnRecipeInputChange(f, i)}
+                required
               />
               <i className="close link icon" onClick={() => this.handelDeletedIngredient(e)} />
             </div>
