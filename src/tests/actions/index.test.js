@@ -1,4 +1,4 @@
-import { addRecipe, editRecipe, deleteRecipe } from '../../actions';
+import { addRecipe, editRecipe, deleteRecipe, setTextFilter } from '../../actions';
 
 test('should setup remove recipe action object', () => {
   const action = deleteRecipe('123abc');
@@ -20,4 +20,9 @@ test('should setup new recipe action object', () => {
     type: 'ADD_RECIPE',
     payload: { title: 'New Recipe', yield: '10pax' }
   });
+});
+
+test('should should setup filter for text action object', () => {
+  const action = setTextFilter('New Text');
+  expect(action).toEqual({ type: 'SET_TEXT_FILTER', text: 'New Text' });
 });
