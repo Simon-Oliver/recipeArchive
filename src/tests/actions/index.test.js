@@ -23,6 +23,7 @@ test('should setup new recipe action object', () => {
 });
 
 test('should should setup filter for text action object', () => {
-  const action = setTextFilter('New Text');
-  expect(action).toEqual({ type: 'SET_TEXT_FILTER', text: 'New Text' });
+  const text = 'New Text'
+  const action = setTextFilter(text);
+  expect(action).toEqual({ type: 'SET_TEXT_FILTER', text });
 });
