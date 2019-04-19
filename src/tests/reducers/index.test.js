@@ -26,7 +26,8 @@ const initialState = {
       recipeYield: '10pax',
       id: '3'
     }
-  ]
+  ],
+  textFilter: ''
 };
 
 test('should setup default recipe values', () => {
@@ -46,7 +47,7 @@ test('should setup default recipe values', () => {
   });
 });
 
-test('should edit existing recipe', () => {
+test('should edit existing recipe in state', () => {
   const state = rootReducers(initialState, {
     type: 'EDIT_RECIPE',
     id: '3',
@@ -64,6 +65,36 @@ test('should edit existing recipe', () => {
         recipeYield: '10pax',
         id: '3'
       }
-    ]
+    ],
+    textFilter: ''
+  });
+});
+
+test('should add new recipe to state', () => {
+  const state = rootReducers(initialState, {
+    type: 'ADD_RECIPE',
+    payload: {
+      recipeIngredient: ['1l Milk', '1 egg', '300g of salt'],
+      name: 'Fourth Recipe',
+      recipeInstructions:
+        'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
+      recipeYield: '10pax',
+      id: '4'
+    }
+  });
+
+  expect(state).toEqual({
+    recipes: [
+      ...initialState.recipes,
+      {
+        recipeIngredient: ['1l Milk', '1 egg', '300g of salt'],
+        name: 'Fourth Recipe',
+        recipeInstructions:
+          'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
+        recipeYield: '10pax',
+        id: '4'
+      }
+    ],
+    textFilter: ''
   });
 });
