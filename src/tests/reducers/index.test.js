@@ -98,3 +98,11 @@ test('should add new recipe to state', () => {
     textFilter: ''
   });
 });
+
+test('should delete recipe from state', () => {
+  const state = rootReducers(initialState, { type: 'DELETE_RECIPE', id: '3' });
+  expect(state).toEqual({
+    recipes: [initialState.recipes[0], initialState.recipes[1]],
+    textFilter: ''
+  });
+});

@@ -1,4 +1,5 @@
 import { selectRecipe } from '../../../helper/selectRecipe';
+import rootReducers from '../../../reducers';
 
 const recipes = [
   {
