@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import uniqId from 'uniqid';
+import moment from 'moment';
 import { editRecipe, addRecipe } from '../actions';
 
 class RecipeForm extends React.Component {
@@ -11,7 +12,9 @@ class RecipeForm extends React.Component {
     recipeYield: '',
     id: uniqId(),
     key: 1,
-    newRecipe: true
+    newRecipe: true,
+    recipeCreated: moment().format(),
+    recipeLastEdited: []
   };
 
   getDefaultProps() {
@@ -27,7 +30,8 @@ class RecipeForm extends React.Component {
         recipeInstructions: this.props.recipe[0].recipeInstructions,
         recipeYield: this.props.recipe[0].recipeYield,
         id: this.props.recipe[0].id,
-        newRecipe: false
+        newRecipe: false,
+        recipeLastEdited: [moment().format(), ...this.props.recipe[0].recipeLastEdited]
       });
     }
   }
