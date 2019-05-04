@@ -25,15 +25,7 @@ class SearchBar extends Component {
     return (
       <div className="ui form">
         <div className="inline fields">
-          <div className="ui icon input">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={this.state.searchTerm}
-              onChange={e => this.onInputChange(e)}
-            />
-            <i className="search icon" />
-          </div>
+          <label>Sort By:</label>
           <div className="field">
             <div className="ui radio checkbox">
               <input
@@ -58,6 +50,15 @@ class SearchBar extends Component {
               <label>A-Z</label>
             </div>
           </div>
+        </div>
+        <div className="ui icon input">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={this.state.searchTerm}
+            onChange={e => this.onInputChange(e)}
+          />
+          <i className="search icon" />
         </div>
       </div>
     );
