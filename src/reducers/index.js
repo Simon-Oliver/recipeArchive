@@ -62,6 +62,10 @@ const rootReducers = (state = initialState, action) => {
     return { ...state, recipes: [...state.recipes.filter(e => e.id !== action.id)] };
   }
 
+  if (action.type === 'SORT_BY') {
+    return { ...state, sortBy: action.sortBy };
+  }
+
   return state;
 };
 

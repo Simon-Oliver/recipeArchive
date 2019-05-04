@@ -22,6 +22,8 @@ const RecipeList = props => {
   );
 };
 
-const mapStateToProps = state => ({ recipes: selectRecipe(state.recipes, state.textFilter) });
+const mapStateToProps = state => ({
+  recipes: selectRecipe(state.recipes, state.textFilter, state.sortBy)
+});
 
 export default connect(mapStateToProps)(RecipeList);
