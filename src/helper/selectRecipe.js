@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export const selectRecipe = (recipes = [], term = '', sortBy = 'date') =>
   recipes
     .filter(e => e.name.toLowerCase().includes(term.toLocaleLowerCase()))
