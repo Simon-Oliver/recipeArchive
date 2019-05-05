@@ -17,9 +17,9 @@ class RecipeForm extends React.Component {
     recipeLastEdited: []
   };
 
-  getDefaultProps() {
-    return { recipe: [{}] };
-  }
+  // getDefaultProps() {
+  //   return { recipe: [{}] };
+  // }
 
   componentDidMount() {
     if (this.props.recipe) {
@@ -160,11 +160,23 @@ class RecipeForm extends React.Component {
   }
 }
 
+RecipeForm.defaultProps = {
+  recipeIngredient: [],
+  name: '',
+  recipeInstructions: '',
+  recipeYield: '',
+  id: uniqId(),
+  key: 1,
+  newRecipe: true,
+  recipeCreated: moment().format(),
+  recipeLastEdited: []
+};
+
 const mapStateToProps = (state, ownProps) => {
   if (!ownProps) {
     return { recipe: state.recipes.filter(e => e.id === ownProps.match.params.id) };
   }
-  return null;
+  return {};
 };
 
 export default connect(

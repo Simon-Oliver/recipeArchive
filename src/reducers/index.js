@@ -18,7 +18,7 @@ const initialState = {
       recipeYield: '10pax',
       id: '2',
       recipeLastEdited: ['2016-09-08T08:02:17-08:00', '2014-09-08T08:02:17-05:00'],
-      recipeCreated: '2013-09-08T08:02:17-05:00'
+      recipeCreated: '2015-09-08T08:02:17-05:00'
     },
     {
       recipeIngredient: ['1l Milk', '1 egg', '300g of salt'],
@@ -28,7 +28,7 @@ const initialState = {
       recipeYield: '10pax',
       id: '3',
       recipeLastEdited: [],
-      recipeCreated: '2013-09-08T08:02:17-03:00'
+      recipeCreated: '2014-09-08T08:02:17-03:00'
     }
   ],
   textFilter: ''
