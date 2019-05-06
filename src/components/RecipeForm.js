@@ -31,7 +31,8 @@ class RecipeForm extends React.Component {
         recipeYield: this.props.recipe[0].recipeYield,
         id: this.props.recipe[0].id,
         newRecipe: false,
-        recipeLastEdited: [moment().format(), ...this.props.recipe[0].recipeLastEdited]
+        recipeCreated: this.props.recipe[0].recipeCreated,
+        recipeLastEdited: [...this.props.recipe[0].recipeLastEdited]
       });
     }
   }
@@ -76,7 +77,8 @@ class RecipeForm extends React.Component {
         key
       });
     } else {
-      this.props.editRecipe(this.state.id, this.state);
+      const date = moment().format();
+      this.props.editRecipe(this.state.id, this.state, date);
       this.props.history.push('/recipes');
     }
   }

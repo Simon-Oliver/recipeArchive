@@ -1,7 +1,4 @@
-import { selectRecipe } from '../../../helper/selectRecipe';
-import rootReducers from '../../../reducers';
-
-const testObj = {
+export const initialState = {
   recipes: [
     {
       recipeIngredient: ['3 or 4 ripe bananas, smashed', '1 egg', '3/4 cup of sugar'],
@@ -36,23 +33,3 @@ const testObj = {
   ],
   textFilter: ''
 };
-
-test('should filter by text value', () => {
-  const result = selectRecipe(testObj.recipes, 'new');
-  expect(result).toEqual([testObj.recipes[1], testObj.recipes[2]]);
-});
-
-test('should filter by text value and sorted by date', () => {
-  const result = selectRecipe(testObj.recipes, 'new', 'date');
-  expect(result).toEqual([testObj.recipes[1], testObj.recipes[2]]);
-});
-
-test('should filter by text value and sorted by date', () => {
-  const result = selectRecipe(testObj.recipes, 'new', 'az');
-  expect(result).toEqual([testObj.recipes[2], testObj.recipes[1]]);
-});
-
-test('should sort by date', () => {
-  const result = selectRecipe(testObj.recipes);
-  expect(result).toEqual([testObj.recipes[1], testObj.recipes[2], testObj.recipes[0]]);
-});

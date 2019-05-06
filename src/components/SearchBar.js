@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setTextFilter, sortBy } from '../actions';
+import { setTextFilter, sortRecipeBy } from '../actions';
 
 class SearchBar extends Component {
   state = {
@@ -17,7 +17,7 @@ class SearchBar extends Component {
 
   onFilterChange = e => {
     this.setState({ ...this.state, sortBy: e.target.value }, () =>
-      this.props.sortBy(this.state.sortBy)
+      this.props.sortRecipeBy(this.state.sortBy)
     );
   };
 
@@ -67,5 +67,5 @@ class SearchBar extends Component {
 
 export default connect(
   null,
-  { setTextFilter, sortBy }
+  { setTextFilter, sortRecipeBy }
 )(SearchBar);

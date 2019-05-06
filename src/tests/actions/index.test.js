@@ -1,4 +1,4 @@
-import { addRecipe, editRecipe, deleteRecipe, setTextFilter } from '../../actions';
+import { addRecipe, editRecipe, deleteRecipe, setTextFilter, sortRecipeBy } from '../../actions';
 
 test('should setup remove recipe action object', () => {
   const action = deleteRecipe('123abc');
@@ -26,4 +26,10 @@ test('should should setup filter for text action object', () => {
   const text = 'New Text';
   const action = setTextFilter(text);
   expect(action).toEqual({ type: 'SET_TEXT_FILTER', text });
+});
+
+test('should should setup sortBy DATE action object', () => {
+  const sortBy = 'date';
+  const action = sortRecipeBy(sortBy);
+  expect(action).toEqual({ type: 'SORT_BY', sortBy });
 });

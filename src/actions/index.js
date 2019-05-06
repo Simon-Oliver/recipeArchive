@@ -1,12 +1,13 @@
 export const addRecipe = recipe => ({ type: 'ADD_RECIPE', payload: recipe });
-export const editRecipe = (id, update) => ({
+export const editRecipe = (id, update, recipeLastEdited) => ({
   type: 'EDIT_RECIPE',
   id,
-  update
+  update,
+  recipeLastEdited
 });
 
 export const deleteRecipe = id => ({ type: 'DELETE_RECIPE', id });
 
 export const setTextFilter = text => ({ type: 'SET_TEXT_FILTER', text });
 
-export const sortBy = sortBy => ({ type: 'SORT_BY', sortBy });
+export const sortRecipeBy = sortBy => ({ type: 'SORT_BY', sortBy });

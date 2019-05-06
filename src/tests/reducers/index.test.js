@@ -1,48 +1,10 @@
 import rootReducers from '../../reducers';
-
-const initialState = {
-  recipes: [
-    {
-      recipeIngredient: ['3 or 4 ripe bananas, smashed', '1 egg', '3/4 cup of sugar'],
-      name: "Mom's World Famous Banana Bread",
-      recipeInstructions:
-        'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
-      recipeYield: '1 loaf',
-      id: '1'
-    },
-    {
-      recipeIngredient: ['200g Chocolate', '1 egg', '300g of sugar'],
-      name: 'New Recipe',
-      recipeInstructions:
-        'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
-      recipeYield: '10pax',
-      id: '2'
-    },
-    {
-      recipeIngredient: ['1l Milk', '1 egg', '300g of salt'],
-      name: 'Another New Recipe',
-      recipeInstructions:
-        'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
-      recipeYield: '10pax',
-      id: '3'
-    }
-  ],
-  textFilter: ''
-};
+import { initialState } from '../../dumyData/initialDummyData';
 
 test('should setup default recipe values', () => {
   const state = rootReducers(undefined, { type: '@@INIT' });
   expect(state).toEqual({
-    recipes: [
-      {
-        recipeIngredient: ['3 or 4 ripe bananas, smashed', '1 egg', '3/4 cup of sugar'],
-        name: "Mom's World Famous Banana Bread",
-        recipeInstructions:
-          'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
-        recipeYield: '1 loaf',
-        id: '1234'
-      }
-    ],
+    recipes: [...initialState.recipes],
     textFilter: ''
   });
 });
@@ -51,7 +13,8 @@ test('should edit existing recipe in state', () => {
   const state = rootReducers(initialState, {
     type: 'EDIT_RECIPE',
     id: '3',
-    update: { name: 'Updated Recipe' }
+    update: { name: 'Updated Recipe' },
+    recipeLastEdited: '2015-09-08T08:02:17-05:00'
   });
   expect(state).toEqual({
     recipes: [
@@ -63,6 +26,8 @@ test('should edit existing recipe in state', () => {
         recipeInstructions:
           'Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. Add the flour last. Pour the mixture into a loaf pan and bake for one hour.',
         recipeYield: '10pax',
+        recipeCreated: '2014-09-08T08:02:17-03:00',
+        recipeLastEdited: ['2015-09-08T08:02:17-05:00'],
         id: '3'
       }
     ],
