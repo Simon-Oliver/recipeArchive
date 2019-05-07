@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<div
+  className="ui secondary pointing menu"
+>
+  <NavLink
+    activeClassName="active"
+    className="item"
+    exact={true}
+    to="/recipes"
+  >
+    All Recipes
+  </NavLink>
+  <NavLink
+    activeClassName="active"
+    className="item"
+    to="/recipes/new"
+  >
+    Add Recipe
+  </NavLink>
+  <div
+    className="right menu"
+  >
+    <a
+      className="ui item"
+      href="/"
+    >
+      Logout
+    </a>
+  </div>
+</div>
+`;

@@ -71,3 +71,21 @@ test('should delete recipe from state', () => {
     textFilter: ''
   });
 });
+
+test('should set sortBy to az', () => {
+  const state = rootReducers(initialState, { type: 'SORT_BY', sortBy: 'az' });
+  expect(state).toEqual({
+    recipes: [initialState.recipes[0], initialState.recipes[1], initialState.recipes[2]],
+    sortBy: 'az',
+    textFilter: ''
+  });
+});
+
+test('should set sortBy to date', () => {
+  const state = rootReducers(initialState, { type: 'SORT_BY', sortBy: 'date' });
+  expect(state).toEqual({
+    recipes: [initialState.recipes[0], initialState.recipes[1], initialState.recipes[2]],
+    sortBy: 'date',
+    textFilter: ''
+  });
+});
